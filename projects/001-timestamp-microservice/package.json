@@ -1,0 +1,14 @@
+{
+  "name": "001-timestamp-microservice",
+  "version": "1.0.0",
+  "description": "backend nodejs path",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francesco Di Bella",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
