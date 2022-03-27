@@ -3,28 +3,18 @@ function dateParser (date2parse) {
   // https://it.javascript.info/native-prototypes
   // https://ichi.pro/it/che-cos-e-object-object-in-javascript-object-prototype-tostring-32678405903780
   // https://devdev.it/guida-javascript/prototype-ereditarieta/
-  console.log(Object.prototype.toString.call(dateBase) === '[object Date]')
-  
-  let unixDate = dateBase.getTime();
+  let unixDate;
   let utcDate;
-  console.log('dateBase', dateBase);
-  switch (true) {
-    case isNaN(unixDate):
-      unixDate = dateBase;
-      console.log('date2parse', date2parse);
-      utcDate = date2parse.toUTCString;
-      break;
-    
-    case (unixDate >= 0):
-      console.log('dateBase > 0', dateBase)
-      //unixDate = dateBase.getTime();
-      utcDate = dateBase.toUTCString();
-      break;
-    
-    default:
-      return 'Bad data format! Retry';
+  if (!isNaN(dateBase)) {
+    unixDate = dateBase.getTime();
+    utcDate = dateBase.toUTCString();
+  } else {
+    unixDate = parseInt(date2parse);
+    const newDateBase = new Date(parseInt(date2parse) * 1000);
+    utcDate = newDateBase.toUTCString();
   }
   
+
   return {
     'unix-date': unixDate,
     'UTC-date': utcDate
