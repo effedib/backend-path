@@ -1,23 +1,38 @@
 function dateParser (date2parse) {
-  const dateBase = new Date(date2parse);
-  // https://it.javascript.info/native-prototypes
-  // https://ichi.pro/it/che-cos-e-object-object-in-javascript-object-prototype-tostring-32678405903780
-  // https://devdev.it/guida-javascript/prototype-ereditarieta/
-  let unixDate;
-  let utcDate;
-  if (!isNaN(dateBase)) {
-    unixDate = dateBase.getTime();
-    utcDate = dateBase.toUTCString();
-  } else {
-    unixDate = parseInt(date2parse);
-    const newDateBase = new Date(parseInt(date2parse) * 1000);
-    utcDate = newDateBase.toUTCString();
-  }
-  
 
-  return {
-    'unix-date': unixDate,
-    'UTC-date': utcDate
+  const dateBase = isNow(date2parse);
+
+  return getDateFormat(dateBase)
+
+  // check if value is null, the default date is now()
+  function isNow (date2parse) {
+    if (date2parse === undefined) {
+      return new Date(Date.now())
+    } else {
+      return new Date(date2parse)
+    }
+  }
+
+  // check if the format is date_string or timestamp or an invalid date
+  function getDateFormat (date) {
+    // correct date_string format
+    if (!isNaN(date)) {
+      return {
+        'unix-date': date.getTime(),
+        'UTC-date': date.toUTCString()
+      }
+    } else {
+      // if is not NaN, is already unix format
+      if (!isNaN(parseInt(date2parse))) {
+        return {
+          'unix-date': parseInt(date2parse),
+          'UTC-date': new Date(parseInt(date2parse)).toUTCString()
+        }
+      }
+
+      // any other option is invalid
+      return {error: "Invalid Date"}
+    }
   }
 }
 
@@ -25,5 +40,13 @@ module.exports = {
   dateParser
 }
 
-console.log(dateParser('2022-03-26'));
-console.log(dateParser('1451001600000'));
+// console.log(dateParser('2015-12-25'));
+// console.log(dateParser('1451001600000'));
+// console.log(dateParser('nice guy'));
+// console.log(dateParser());
+// console.log(dateParser('1995, 11, 17'));
+// console.log(dateParser('December 17, 1995 03:24:00'));
+
+console.log(dateParser('9'));
+console.log(dateParser('145'));
+console.log(dateParser('2998'));

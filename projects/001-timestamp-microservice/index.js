@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
     res.send('Hello world');
 });
 
+app.get('/api', (req, res) => {
+    const date = dateParser();
+    res.json(date);
+});
+
 app.get('/api/:date', (req, res) => {
     const date = dateParser(req.params.date);
     res.json(date);
