@@ -6,12 +6,9 @@ function dateParser (date2parse) {
 
   // check if value is null, the default date is now()
   function isNow (date2parse) {
-    if (date2parse === undefined) {
-      return new Date(Date.now())
-    } else {
-      return new Date(date2parse)
-    }
+    return (date2parse === undefined) ? new Date(Date.now()) : new Date(date2parse)
   }
+
 
   // check if the format is date_string or timestamp or an invalid date
   function getDateFormat (date) {
@@ -47,6 +44,6 @@ module.exports = {
 // console.log(dateParser('1995, 11, 17'));
 // console.log(dateParser('December 17, 1995 03:24:00'));
 
-console.log(dateParser('9'));
-console.log(dateParser('145'));
-console.log(dateParser('2998'));
+// console.log(dateParser('9'));
+// console.log(dateParser('145'));
+// console.log(dateParser('2998'));
