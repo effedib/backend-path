@@ -4,11 +4,15 @@
   "description": "backend nodejs path",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "author": "Francesco Di Bella",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2"
   }
 }

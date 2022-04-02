@@ -8,19 +8,14 @@ function dateParser (date2parse) {
   if the date_string is correct, return an obj having keys 'unix-date' and 'UTC-date', using new Date to convert the string to [object Date] and call getTime method and toUTCString method
   */
   if (isValidDate(date)) {
-    return {
-      'unix-date': new Date(date).getTime(),
-      'UTC-date': new Date(date).toUTCString()
-    }
+    return dateObj(new Date(date).getTime(),new Date(date).toUTCString())
   }
+
   /*
   if the date is in number format, return an obj having keys 'unix-date' and 'UTC-date', using parseInt(date) to set the value of 'unix-date' (bypass the new Date creation) and creating a new [object Date] using new Date(parseInt(date)) to call toUTCString method
   */
   else if (isValidUnixTimestamp(date)) {
-    return {
-      'unix-date': parseInt(date),
-      'UTC-date': new Date(parseInt(date)).toUTCString()
-    }
+    return dateObj(parseInt(date), new Date(parseInt(date)).toUTCString())
   }
 
   // return error for any other string
@@ -38,18 +33,25 @@ function isValidUnixTimestamp (date) {
   return (!isNaN(parseInt(date))) ? true : false
 }
 
+function dateObj (unixDate, utcDate) {
+  return {
+    'unix-date': unixDate,
+    'UTC-date': utcDate
+  }
+}
+
 
 module.exports = {
   dateParser
 }
 
-console.log(dateParser('2015-12-25'));
-console.log(dateParser('1451001600000'));
-console.log(dateParser('nice guy'));
-console.log(dateParser());
-console.log(dateParser('1995, 11, 17'));
-console.log(dateParser('December 17, 1995 03:24:00'));
-console.log(dateParser('9'));
-console.log(dateParser('145'));
-console.log(dateParser('2998'));
-console.log(dateParser('30000.77'));
+// console.log(dateParser('2015-12-25'));
+// console.log(dateParser('1451001600000'));
+// console.log(dateParser('nice guy'));
+// console.log(dateParser());
+// console.log(dateParser('1995, 11, 17'));
+// console.log(dateParser('December 17, 1995 03:24:00'));
+// console.log(dateParser('9'));
+// console.log(dateParser('145'));
+// console.log(dateParser('2998'));
+// console.log(dateParser('30000.77'));

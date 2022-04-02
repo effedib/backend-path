@@ -2,9 +2,9 @@
   "name": "backend-path",
   "version": "1.0.0",
   "description": "This is a repository containing all the projects for **TomorrowDevs** students to learn Backend Development. <br /> This repo aims to give students a way to discover, study, and implement microservices, API, REST architecture, Socket, and so on.",
-  "main": "index.js",
+  "main": "./projects/001-timestamp-microservice/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/fdb86/backend-path#readme",
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2"
   }
 }

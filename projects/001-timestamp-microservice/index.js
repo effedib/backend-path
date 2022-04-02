@@ -8,21 +8,15 @@ app.use(express.json());
 app.set('json spaces', 4);
 
 app.get('/', (req, res) => {
-    console.log('listening');
     res.status(200);
-    res.send('Hello world');
+    res.send(`Hello world, I'm listening`);
 });
 
-app.get('/api', (req, res) => {
-    const date = dateParser();
-    res.json(date);
-});
-
-app.get('/api/:date', (req, res) => {
+app.get('/api/:date?', (req, res) => {
     const date = dateParser(req.params.date);
     res.json(date);
 });
 
 app.listen(port, () => {
-    console.log("Server ready");
+    console.log(`Server ready`);
   });
