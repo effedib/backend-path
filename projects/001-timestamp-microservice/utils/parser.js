@@ -8,7 +8,7 @@ function dateParser (date2parse) {
   if the date_string is correct, return an obj having keys 'unix-date' and 'UTC-date', using new Date to convert the string to [object Date] and call getTime method and toUTCString method
   */
   if (isValidDate(date)) {
-    return dateObj(new Date(date).getTime(),new Date(date).toUTCString())
+    return dateObj(new Date(date).getTime(), new Date(date).toUTCString())
   }
 
   /*
