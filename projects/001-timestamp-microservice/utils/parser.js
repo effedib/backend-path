@@ -24,13 +24,21 @@ function dateParser (date2parse) {
 
 
 // check if a date_string is valid
-function isValidDate (date) {
-  return (!isNaN(new Date(date))) ? true : false
+function isValidDate (date_string) {
+  const isDateString = !isNaN(new Date(date_string));
+  const isValidLength = date_string.length >= 4;
+
+  return (isDateString && isValidLength) ? true : false
 }
 
 // check if a string is in unix timestamp format
-function isValidUnixTimestamp (date) {
-  return (!isNaN(parseInt(date))) ? true : false
+function isValidUnixTimestamp (date_string) {
+  const isNumber = !isNaN(parseInt(date_string));
+  const isValidLength = date_string.toString().length >= 10;
+  const pattern = /[.,]+/;
+  const isIntegerNumber = !pattern.test(date_string.toString())
+
+  return (isNumber && isValidLength && isIntegerNumber) ? true : false
 }
 
 function dateObj (unixDate, utcDate) {
@@ -51,6 +59,7 @@ module.exports = {
 // console.log(dateParser());
 // console.log(dateParser('1995, 11, 17'));
 // console.log(dateParser('December 17, 1995 03:24:00'));
+
 // console.log(dateParser('9'));
 // console.log(dateParser('145'));
 // console.log(dateParser('2998'));

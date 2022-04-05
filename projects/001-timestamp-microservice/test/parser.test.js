@@ -35,9 +35,13 @@ describe('dateParser Test', () => {
   it(`invalid date format`, () => {
     assert.deepEqual(dateParser('nice guy'), results.invalid)
   });
+  it(`it should return the Date.now() value, if the value is > 0 it's ok`, () => {
+    const now = dateParser();
+    assert.ok(now['unix-date'] > 0);
+  });
+  it(`date_string is too short`, () => {
+    assert.deepEqual(dateParser('9'), results.invalid)
+    assert.deepEqual(dateParser('145'), results.invalid)
+    assert.deepEqual(dateParser('30000.77'), results.invalid)
+  });
 })
-
-
-
-
-// console.log(dateParser());
