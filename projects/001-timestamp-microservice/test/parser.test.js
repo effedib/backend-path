@@ -33,11 +33,17 @@ describe('dateParser Test', () => {
     assert.deepEqual(dateParser('2015, 12, 25'), results.validLocal)
   });
   it(`invalid date format`, () => {
-    assert.deepEqual(dateParser('nice guy'), results.invalid)
+    assert.deepEqual(dateParser('nice guy'), results.invalid);
+    assert.deepEqual(dateParser(''), results.invalid);
+    assert.deepEqual(dateParser(false), results.invalid);
+    assert.deepEqual(dateParser(0), results.invalid);
+    assert.deepEqual(dateParser(0n), results.invalid);
   });
   it(`it should return the Date.now() value, if the value is > 0 it's ok`, () => {
     const now = dateParser();
+    const nowWithNull = dateParser(null);
     assert.ok(now['unix-date'] > 0);
+    assert.ok(nowWithNull['unix-date'] > 0);
   });
   it(`date_string is too short`, () => {
     assert.deepEqual(dateParser('9'), results.invalid)

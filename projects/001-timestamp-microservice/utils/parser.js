@@ -1,7 +1,9 @@
 function dateParser (date2parse) {
 
+  if ((date2parse === false) || (date2parse === -0) || (date2parse === 0n)) { return {error: "Invalid Date"} }
+
   // if date2parse is null, set date = today
-  const date = (date2parse === undefined)
+  const date = (date2parse === undefined || date2parse === null)
     ? Date.now() : date2parse
 
   /*
